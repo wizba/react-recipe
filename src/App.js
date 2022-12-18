@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import './style.css';
 import Button from '@mui/material/Button';
@@ -30,21 +30,30 @@ const useStyles = makeStyles((theme) => ({
   input: {
     fontSize: 16,
     borderRadius: 4,
+   
+    '&.MuiOutlinedInput-root':{
+      backgroundColor:'white',
+    
+    }
+  },
+  '&MuiOutlinedInput-notchedOutline':{
+    borderColor:'rgba(0,0,0,0.0)'
   },
   button: {
     padding: 8,
   },
+
 }));
 
 export default function App() {
   const classes = useStyles();
-  const [searchTerm,setSearchTerm] = useState('');
-  const [_recipe,_setRecipe] = useState([])
-  const OnSearchReciepe = (event) =>{
+  const [searchTerm, setSearchTerm] = useState('');
+  const [_recipe, _setRecipe] = useState([]);
+  const OnSearchReciepe = (event) => {
     let reciepe = event.target.value;
-    console.log(reciepe)
+    console.log(reciepe);
     setSearchTerm(reciepe);
-  }
+  };
   const getApiData = async () => {
     let response = await fetch(
       `https://api.edamam.com/search?q=${searchTerm}&app_id=ae258d19&app_key=da45a9ad2777b046321684d890e48f50`
@@ -54,75 +63,75 @@ export default function App() {
 
     const { hits } = data;
 
-    const rc = hits.map(val => val.recipe)
-    _setRecipe(rc)
+    const rc = hits.map((val) => val.recipe);
+    _setRecipe(rc);
   };
 
   return (
     <div>
       <React.Fragment>
-        <Container >
-          <Box sx={{display: 'flex',justifyContent:'center'}}>
+        <Container>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <FormControl sx={{ m: 1, width: '300px' }} variant="outlined">
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={'text'}
-              onChange ={
-                OnSearchReciepe
-              }
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    edge="end"
-                    onClick = {getApiData}
-                  >
-                    <SearchIcon/>
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+              <OutlinedInput
+              className ={classes.input}
+                id="outlined-adornment-password"
+                type={'text'}
+                onChange={OnSearchReciepe}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      edge="end"
+                      onClick={getApiData}
+                    >
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
           </Box>
-          
-            <ReciepeList _recipe = {_recipe}/>
-          
-         
-          
+
+          <ReciepeList _recipe={_recipe} />
         </Container>
       </React.Fragment>
     </div>
   );
 }
 
-const ReciepeList = (props) =>{
-  const {_recipe} = props;
-  return (<Grid container spacing={2} mb={4} sx={{display: 'flex',justifyContent:'center'}}>
-    {_recipe.map(val=> <Grid item sm={12} md={6} lg={4} mt={4}>
-            <RecipeItem item = {val}/>
-        </Grid>)
-    }
-  </Grid>
-
-  )
-}
- function RecipeItem({item}) {
+const ReciepeList = (props) => {
+  const { _recipe } = props;
   return (
-    <Card sx={{ maxWidth: 345,padding:'10px',borderRadius:'10px'}}>
+    <Grid
+      container
+      spacing={2}
+      mb={4}
+      sx={{ display: 'flex', justifyContent: 'center' }}
+    >
+      {_recipe.map((val) => (
+        <Grid item sm={12} md={6} lg={4} mt={4}>
+          <RecipeItem item={val} />
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
+function RecipeItem({ item }) {
+  return (
+    <Card sx={{ maxWidth: 345, padding: '10px', borderRadius: '10px' }}>
       <CardMedia
         component="img"
         // height="140"
-        image={item.image }
+        image={item.image}
         alt="green iguana"
-        sx={{borderRadius:'10px'}}
+        sx={{ borderRadius: '10px' }}
       />
       <CardContent>
-        
         <Typography variant="body2" color="text.secondary">
-         {item.label}
+          {item.label}
         </Typography>
       </CardContent>
-     
     </Card>
   );
 }
