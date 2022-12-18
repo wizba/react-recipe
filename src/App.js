@@ -43,6 +43,11 @@ const useStyles = makeStyles((theme) => ({
     padding: 8,
   },
 
+  header:{
+    background:'radial-gradient(circle at 50% -20.71%, #d5ffaa 0, #c0ffb0 10%, #aaffb4 20%, #94f6b6 30%, #7fe8b7 40%, #6cd8b4 50%, #5cc8b0 60%, #50b9ac 70%, #48aea8 80%, #43a4a5 90%, #419ca4 100%)',
+    alignItems:'center',
+    boderRadius:'10px !important'
+  }
 }));
 
 export default function App() {
@@ -71,7 +76,7 @@ export default function App() {
     <div>
       <React.Fragment>
         <Container>
-          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box className={classes.header} sx={{ display: 'flex', justifyContent: 'center',height:'200px' }}>
             <FormControl sx={{ m: 1, width: '300px' }} variant="outlined">
               <OutlinedInput
               className ={classes.input}
