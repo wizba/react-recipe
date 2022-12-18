@@ -1,0 +1,32 @@
+{
+  "name": "react",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "7.20.5",
+    "@emotion/react": "11.10.5",
+    "@emotion/styled": "11.10.5",
+    "@fontsource/roboto": "4.5.8",
+    "@material-ui/core": "^4.0.0",
+    "@material-ui/icons": "^4.11.3",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/material": "5.11.0",
+    "@mui/styled-engine-sc": "5.11.0",
+    "@mui/styles": "^5.11.0",
+    "@types/react": "18.0.26",
+    "@types/styled-components": "5.1.26",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-is": "18.2.0",
+    "styled-components": "5.3.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-scripts": "latest"
+  }
+}
